@@ -1,6 +1,6 @@
-# [Project name]
+# Simple AI Chatbot
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A lightweight chat app for asking questions and getting live, streamed answers from OpenAI.
 
 ## Run & Operate
 
@@ -8,8 +8,8 @@ _Replace the heading above with the project's name, and this line with one sente
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Required secret: `OPENAI_API_KEY` — used server-side for chat completions
+- Chat history is kept in the browser and is not persisted to a database.
 
 ## Stack
 
@@ -22,23 +22,27 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/simple-ai-chatbot/src/App.tsx` — chat UI and browser-side message state
+- `artifacts/api-server/src/routes/chat.ts` — validated, streamed OpenAI chat endpoint
+- `lib/api-spec/openapi.yaml` — API contract source of truth
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Chat replies stream to the browser as server-sent events.
+- The OpenAI key is only used by the API server; it is never sent to the browser.
+- Conversations are temporary and cleared by Start over or a page reload.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+The app supports a single chat, suggested starter questions, streaming replies, retries, stopping a reply, and starting a fresh conversation.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+No additional preferences recorded.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The chat endpoint accepts at most 30 messages per request; the client should keep requests within that limit.
 
 ## Pointers
 

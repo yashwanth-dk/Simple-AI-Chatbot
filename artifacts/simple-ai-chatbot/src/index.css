@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -430,4 +431,102 @@
   .border.hover-elevate:not(.no-hover-interaction-elevate)::after {
     inset: -1px;
   }
+}
+
+/* Citrus-paper palette: warm, tactile and quietly confident. */
+:root {
+  --background: 43 41% 96%;
+  --foreground: 174 24% 17%;
+  --border: 39 20% 84%;
+  --card: 45 37% 99%;
+  --card-foreground: 174 24% 17%;
+  --card-border: 39 20% 84%;
+  --sidebar: 43 41% 96%;
+  --sidebar-foreground: 174 24% 17%;
+  --sidebar-border: 39 20% 84%;
+  --sidebar-primary: 171 46% 28%;
+  --sidebar-primary-foreground: 45 45% 97%;
+  --sidebar-accent: 42 26% 91%;
+  --sidebar-accent-foreground: 174 24% 17%;
+  --sidebar-ring: 171 46% 28%;
+  --popover: 45 37% 99%;
+  --popover-foreground: 174 24% 17%;
+  --popover-border: 39 20% 84%;
+  --primary: 171 46% 28%;
+  --primary-foreground: 45 45% 97%;
+  --secondary: 41 34% 91%;
+  --secondary-foreground: 174 24% 17%;
+  --muted: 42 26% 91%;
+  --muted-foreground: 172 12% 44%;
+  --accent: 15 78% 59%;
+  --accent-foreground: 45 45% 97%;
+  --destructive: 2 66% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 39 20% 84%;
+  --ring: 171 46% 28%;
+  --chart-1: 171 46% 28%;
+  --chart-2: 15 78% 59%;
+  --chart-3: 41 67% 63%;
+  --chart-4: 190 24% 48%;
+  --chart-5: 8 45% 68%;
+  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-serif: 'Newsreader', Georgia, serif;
+  --app-font-mono: 'DM Sans', sans-serif;
+  --radius: 1rem;
+}
+.dark {
+  --background: 174 23% 12%;
+  --foreground: 43 35% 93%;
+  --border: 174 15% 28%;
+  --card: 174 20% 16%;
+  --card-foreground: 43 35% 93%;
+  --card-border: 174 15% 28%;
+  --sidebar: 174 23% 12%;
+  --sidebar-foreground: 43 35% 93%;
+  --sidebar-border: 174 15% 28%;
+  --sidebar-primary: 164 35% 62%;
+  --sidebar-primary-foreground: 174 24% 12%;
+  --sidebar-accent: 174 17% 22%;
+  --sidebar-accent-foreground: 43 35% 93%;
+  --sidebar-ring: 164 35% 62%;
+  --popover: 174 20% 16%;
+  --popover-foreground: 43 35% 93%;
+  --popover-border: 174 15% 28%;
+  --primary: 164 35% 62%;
+  --primary-foreground: 174 24% 12%;
+  --secondary: 174 17% 22%;
+  --secondary-foreground: 43 35% 93%;
+  --muted: 174 17% 22%;
+  --muted-foreground: 43 14% 66%;
+  --accent: 15 70% 62%;
+  --accent-foreground: 174 24% 12%;
+  --destructive: 2 62% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --input: 174 15% 28%;
+  --ring: 164 35% 62%;
+}
+@layer base {
+  body { font-family: var(--app-font-sans); min-width: 320px; }
+}
+html, body, #root { min-height: 100%; }
+::selection { background: hsl(var(--accent) / .22); }
+button, textarea { font: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  opacity: .16;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+}
+.message-enter { animation: rise-in .38s cubic-bezier(.2,.8,.2,1) both; }
+.dot-pulse { animation: dot-pulse 1.15s ease-in-out infinite; }
+.dot-pulse:nth-child(2) { animation-delay: .14s; }
+.dot-pulse:nth-child(3) { animation-delay: .28s; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes dot-pulse { 0%, 60%, 100% { opacity: .36; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
 }
